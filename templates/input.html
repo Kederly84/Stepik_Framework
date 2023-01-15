@@ -1,29 +1,36 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
- <form name="test" method="post">
-  <p><b>Ваш email:</b><br>
-      <label>
-          <input type="text" size="60" name="email">
-      </label>
-  </p>
-  <p><b>Тема сообщения:</b><br>
-      <label>
-          <input type="text" size="60" name="theme">
-      </label>
-  </p>
-  <p>Сообщение:<Br>
-      <label>
-          <textarea name="comment" cols="58" rows="3"></textarea>
-      </label>
-  </p>
-  <p><input type="submit" value="Отправить">
-   <input type="reset" value="Очистить"></p>
- </form>
-
- </body>
-</html>
+{% extends "base.html" %}
+{% block title %}Input Form{% endblock %}
+{% block content %}
+<div class="container">
+    <form name="test" method="post">
+        <div class="row">
+            <div class="col-25">
+                <label for="email">Email</label>
+            </div>
+            <div class="col-75">
+                <input type="text" id="email" name="email" placeholder="Your email">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-25">
+                <label for="theme">Theme</label>
+            </div>
+            <div class="col-75">
+                <input type="text" id="theme" name="theme" placeholder="Theme">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-25">
+                <label for="subject">Text</label>
+            </div>
+            <div class="col-75">
+                <textarea id="subject" name="comment" placeholder="Write something.." style="height:200px"></textarea>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <input type="submit" value="Submit">
+        </div>
+    </form>
+</div>
+{% endblock %}

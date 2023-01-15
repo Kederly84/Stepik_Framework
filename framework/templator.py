@@ -1,5 +1,5 @@
-from os.path import join
-from jinja2 import Template
+from jinja2 import FileSystemLoader
+from jinja2.environment import Environment
 
 
 def render(template_name: str, folder='templates', **kwargs):
@@ -9,11 +9,7 @@ def render(template_name: str, folder='templates', **kwargs):
     :param kwargs: именованные аргументы передаваемые в шаблон
     :return:
     """
-    # Получаем путь к шаблону
-    file_path = join(folder, template_name)
-    # Открывааем шаблон
-    with open(file_path, encoding='utf-8') as file:
-        # Читаем
-        template = Template(file.read())
-    # Рендерим шаблон с полученными параметрами
+    env = Environment()
+    env.loader = FileSystemLoader(folder)
+    template = env.get_template(template_name)
     return template.render(**kwargs)
