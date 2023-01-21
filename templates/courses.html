@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+{% block title %}Курсы{% endblock %}
+
+{% block content %}
+<div class="table-wrapper">
+    <table border="1">
+        <thead>
+        <tr>
+            <th>Название курса</th>
+            <th>Категория</th>
+            <th>Тип курса</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for item in objects %}
+        <tr>
+            <td>{{item.name}}</td>
+            <td>{{item.category}}</td>
+            <td>{{item.course_type}}</td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+<div class="container">
+    <form name="test" method="post">
+        <div class="row">
+            <div class="col-25">
+                <label for="coursename">Название курса</label>
+            </div>
+            <div class="col-75">
+                <input type="text" id="coursename" name="coursename" placeholder="Название курса">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-25">
+                <label for="dropdown">Выберите категорию:</label>
+            </div>
+            <div class="col-75">
+                <select id="dropdown" name="category">
+                    <option value="" disabled selected>Выберите категорию</option>
+                    {% for cat in categories %}
+                    <option value={{cat.id}}>{{cat.name}}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="col-75">
+                <div class="col-25">
+                    <label for="dropdown">Выберите тип курса:</label>
+                </div>
+                <select name="courseType">
+                    <option value="" disabled selected>Выберите тип курса</option>
+                    <option value="verbinar">Вербинар</option>
+                    <option value="record">Курс в записи</option>
+                </select>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <input type="submit" value="Submit">
+        </div>
+    </form>
+</div>
+{% endblock %}

@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block title %}Категории{% endblock %}
+{% block content %}
+
+<div class="table-wrapper">
+    <table border="1">
+        <thead>
+        <tr>
+            <th>ID Категории</th>
+            <th>Название категории</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for item in objects %}
+        <tr>
+            <td>{{item.id}}</td>
+            <td>{{item.name}}</td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<div class="container">
+    <form name="test" method="post">
+        <div class="row">
+            <div class="col-25">
+                <label for="categoryname">Укажите имя категории</label>
+            </div>
+            <div class="col-75">
+                <input type="text" id="categoryname" name="categoryname" placeholder="Название категории">
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <input type="submit" value="Submit">
+        </div>
+    </form>
+</div>
+{% endblock %}
