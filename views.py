@@ -1,30 +1,40 @@
 from framework.templator import render
 
 from patterns.creation_patterns import Engine, Logger
+from patterns.struct_patterns import Route, Debug
+from framework import settings
 
 site = Engine()
 logger = Logger('main')
 
+routes = {}
 
+
+@Route(url='/', routes=routes)
 class Index:
-
+    @Debug(name='Index', debug=settings.DEBUG)
     def __call__(self, requests):
         return '200 OK', render('index.html')
 
 
+@Route(url='/about/', routes=routes)
 class About:
-
+    @Debug(name='About', debug=settings.DEBUG)
     def __call__(self, requests):
         return '200 OK', render('about.html')
 
 
+@Route(url='/input/', routes=routes)
 class InputForm:
-
+    @Debug(name='InputForm', debug=settings.DEBUG)
     def __call__(self, requests):
         return '200 OK', render('input.html')
 
 
+@Route(url='/courses-list/', routes=routes)
 class CoursesList:
+
+    @Debug(name='CoursesList', debug=settings.DEBUG)
     def __call__(self, request):
         logger.log('Список курсов')
         if request['method'] == 'POST':
@@ -54,8 +64,10 @@ class CoursesList:
         return '200 OK', render('courses.html', objects=object_list, categories=categories_list)
 
 
+@Route(url='/categories-list/', routes=routes)
 class CategoriesList:
 
+    @Debug(name='CategoriesList', debug=settings.DEBUG)
     def __call__(self, request):
         logger.log('Список категорий')
         if request['method'] == 'POST':
@@ -73,3 +85,6 @@ class CategoriesList:
             object_list.append(obj)
 
         return '200 OK', render('categories.html', objects=object_list)
+
+
+print(routes)
